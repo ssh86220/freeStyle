@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- services -->
+	<!-- NoticeDao noticeDao = new MybatisNoticeDao();
+		
+		NoticeConsole console = new NoticeConsole();
+		console.setNoticeDao(noticeDao); //injection  -->
+
+	<context:annotation-config/>
+	<bean id="noticeDao1" class="com.newlecture.web.HiNoticeDao"></bean>
+	<bean id="noticeDao2" class="com.newlecture.web.HiNoticeDao"></bean>
+	<bean id = "console" class ="com.newlecture.web.NoticeConsole">
+		<!-- <property name="noticeDao" ref="noticeDao"/> -->
+		<!-- <property name="set.NoticeDao" 세터속성 value="값" ref="레퍼런스"/> -->
+	</bean>
+<!-- 클래스를 만들어줌 -->
+    <!-- more bean definitions for services go here -->
+
+<!-- 컨테이너에 객체조립해주세요. 마이바이티스노티스다오를 여기서 만듬  스프링이 메모리에 담아놓고 올려줌-->
+
+<!-- 어노테이션 설정시 객체는 설정하고 어노테이션 쓴다고 해주기-->
+
+</beans>
