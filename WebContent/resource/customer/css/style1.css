@@ -1,0 +1,90 @@
+@CHARSET "UTF-8";
+
+body {
+	font-familly: 돋움, arial, sans-serif;
+	font-size: 11px;
+	color: #979797;
+}
+
+.hidden {
+	display: none;
+}
+
+/* ----------버튼 스타일---------------------------------------------------------------------------------------- */
+.button {
+	display: inline-block;
+	overflow: hidden;
+	border: 0px;
+	text-indent: -100px;
+}
+
+.button:hover {
+	cursor: pointer;
+}
+
+.search-button {
+	width: 49px;
+	height: 23px;
+	background: url("../images/btn-search.png") no-repeat center;
+}
+
+.zoom-button {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 30px;
+	height: 25px;
+	border-left: 1px solid #BCBA34;
+	background: url("../images/btnZoom.png") no-repeat center;
+}
+
+.customer-button {
+	width: 72px;
+	height: 17px;
+	background: url("../images/menu-customer.png") no-repeat center;
+}
+
+.mypage-button {
+	width: 72px;
+	height: 17px;
+	background: url("../images/menu-mypage.png") no-repeat center;
+}
+/* --------------------스타일---------------------------------------------------------------------------------- */
+#main-menu {
+	/* border: 1px solid red; */
+	display: inline-block;
+}
+
+.content-wrapper {
+	position: relative;
+}
+
+#logo {
+	position: absolute;
+	left: 0px;
+	top: 23px;
+}
+
+#lecture-search-form {
+	position: absolute;
+	left: 468px;
+	top: 23px;
+}
+
+#main-menu {
+	position: absolute;
+	left: 200px;
+	top: 27px;
+}
+
+#member-menu {
+	position: absolute;
+	right: 0px;
+	top: 20px;
+}
+
+#customer-menu {
+	position: absolute;
+	right: 0px;
+	top: 40px;
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.addEventListener("load", function(){
+	var btnParentClose = document.getElementById("btn-parent-close");
+	btnParentClose.onclick = function(){
+		parent.close();
+	};
+});
+
+</script>
+</head>
+<body>
+	<input id="btn-parent-close" type="button" value="창닫기"/>
+</body>
+</html>
