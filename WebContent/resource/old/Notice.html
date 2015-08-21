@@ -8,13 +8,39 @@
 <link href="../customer/css/layout.css" type="text/css" rel="stylesheet"> -->
 <link href="../customer/notice1.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/mordernizr.js"></script>
-<script type="text/javascript" src="notice.js"></script>
-<!-- <style>
+<!-- <script type="text/javascript" src="notice.js"></script> -->
+<script type="text/javascript">
+	window.addEventListener("load", function() {
+		
+		var data : [
+		            {code:"1", title: "스크립트란?", writer:"newlec", regdate:"2015-08-28", hit:2}
+		            {code:"2", title: "스크립트의 플렛폼은?", writer:"newlec", regdate:"2015-08-28", hit:1}
+		            {code:"3", title: "DOM이란?", writer:"newlec", regdate:"2015-08-28", hit:0}
+		            {code:"4", title: "너희가 이벤트를 알아?", writer:"newlec", regdate:"2015-08-28", hit:5}
+		            {code:"5", title: "왓썹?", writer:"newlec", regdate:"2015-08-28", hit:3}
+		            ];
+		
+		var btnAddRow = document.querySelector("#btn-add-row");
+		btnAddRow.onclick = function() {
+			var notice = document.querySelector("#notice");
+			var tbody = notice.querySelector("tbody");
+			var row = tbody.querySelector("tr:first-child");
+				/* row.style.background ="red";	 */		
+			
+				
+				var clone = row.cloneNode(true);
+				
+				for(var i=0; i<data.length; i++){
+				clone.querySelector("td:first-child").innerText = data[i].code;
+				clone.querySelector("td:first-child+td >a").innerText = data[i].title;
+						
+				tbody.appendChild(clone);
+				}
+		};
+	});
+</script>
 
-</style> -->
 </head>
-
-
 
 <body>
 	<header id="header">
@@ -71,6 +97,7 @@
 	</header>
 	<div id="visual">
 		<div class="content-wrapper"></div>
+		
 	</div>
 	<div id="body">
 		<div class="content-wrapper clearfix">
@@ -161,10 +188,14 @@
 
 					</table>
 				</section>
+				<div>
+					<input type="button" value="+" id="btn-add-row" />
+				</div>
 				<nav>
 					<h1 class="hidden">현재 페이지 번호</h1>
 					<p>
 						<a href="">1 of 3 pages</a>
+
 					</p>
 				</nav>
 				<nav id="pager">

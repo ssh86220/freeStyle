@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<script src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+   window.addEventListener("load", function() {
+       var photos = document.getElementById("photos");
+      var items = photos.getElementsByTagName("img");
+
+      /*for (var i = 0; i < items.length; i++)
+         items[i].src = "images/hu.png"; */
+      var btnImgChange = document.getElementById("btn-img-change");
+
+      btnImgChange.onclick = function(){
+         var txtImage = document.getElementById("txt-image")
+         items[0].src = "images/"+txtImage.value;
+         items[0].style.border = "2px solid pink";
+         items[0].style.border = "2px solid pink";
+         items[0].style.width = "200px";
+      /*    for (var i = 0; i < items.length; i++)
+            items[i].src = "images/"+txtImage.value; */
+      };
+
+      var btnImgChange2 = document.getElementById("btn-img-change2");
+
+      btnImgChange2.onclick = function(){
+         var cbImage = document.getElementById("cb-image")
+          for (var i = 0; i < items.length; i++)
+            items[i].src = "images/"+cbImage.value;
+      };
+
+      //var btnAddText = document.getElementById("btn-add-text");
+      //btnAddText = jQuery(btnAddText);  //갑옷입히기 객체(여러개)를 담기
+      //btnAddText = btnAddText.get(0); // 꺼낼때 1번째꺼 꺼내줘. 갑옷벗기 - 다시 다큐먼트객체로
+
+      btnAddText = $("#btn-add-text"); //유일하게 쓸수있는 특수기호 함수명$(jQuery)
+
+
+      //btnaddtext.onclick = function(){
+      //   var photos = document.getelementbyid("photos");
+      //   var items = photos.getelementsbytagname("li");
+      //   var parents = items[0];
+
+
+      //   var txt = document.createtextnode("안녕하세요");
+      //   parents.appendchild(txt);
+
+
+       //};
+
+      btnAddText.bind("click",function(){ //이벤트 넘겨주는 거 bind
+      
+          var photos = $("#photos");  // jquery로 선택하기 
+          var lis = photos.find("li"); //photo에 tag네임 찾기 find
+          var parent = lis.eq(0);  //0번째에 해당하는 녀석을 jquery로 달라
+
+          var txt = "하이요";  //텍스트는 그대로 인식해줌
+          parent.append(txt);
+      
+      });
+
+      btnAddImg = $("#btn-add-img");
+
+      btnAddImg.click(function(){  //이벤트명으로 등장한 함수를 씀 간편하게 
+      
+          var photos = $("#photos");  // jquery로 선택하기 
+          var lis = photos.find("li"); //photo에 tag네임 찾기 find
+          var parent = lis.eq(0);  //0번째에 해당하는 녀석을 jquery로 달라
+
+          var img1 = $("<img />");      //createElement("img"); 이미지생성, 꺽음새를 이용해서
+          img1.attr("src","images/join.jpg");   //가져오기  - 이미지속성, 값넣기
+
+ 
+          parent.append(img1);
+
+          //$("<img />").attr("src", "images/join.jpg").appendTo($"");  //한줄작성
+
+      });
+
+
+      $("#btn-del-child").click(function () {
+            
+            $("#photos li:first-child :last-child").remove(); //element만 삭제됨. 텍스트는 안됨.
+           
+        });
+
+
+      $("#btn-clone-child").click(function () {
+
+          //var clone = $("#photos").children("li").first().clone();
+
+          // $("#photos li:first-child").append(clone);
+
+
+         // var clone = $("#photos").filter("#li:first-child").clone();  //find 자손에서 children 자식에서 filter 찾은거중에서 필터
+
+
+          $("#photos")
+                .children("li")
+                .first()
+                .clone()
+                .appendTo("#photos");  //한줄로 부모에 붙여넣기
+
+
+      });
+
+
+      $("#btn-change-nodes").click(function () {
+      
+          var photos = $("#photos");
+          var chboxs = photos.find("input:checked");  //selector에 checked속성 사용하여 체크된 개수 알아내기
+
+          //var cntChecked = 0;
+
+          //console.log(chboxs.eq(0).attr("checked"));
+          //for (var i = 0; i < chboxs.size; i++) //노드 수만큼 반복
+          //    if (chboxs.eq(i).attr("checked"))  //체크상태화면
+          //    {
+
+          //        cntChecked++; //체크수를 증가
+          //    }
+
+           
+
+          if (chboxs.size() != 2) {
+              alert("노드선택이 잘못되었습니다.");
+              
+          }
+      });
+
+
+
+   });
+</script>
+
+<body>
+    <div>
+        <ul>
+            <li>
+                images<input id="txt-image" type="text" /> <input id="btn-img-change"
+                                                                  type="button" value="변경" />
+            </li>
+            <li>
+                <select id="cb-image">
+                    <option value="hu.png">첫번째이미지</option>
+                    <option value="join.jpg">두번째이미지</option>
+                    <option value="profile.png">세번째이미지</option>
+                </select>
+                images<input id="btn-img-change2" type="button" value="변경" />
+            </li>
+
+            <li>
+                <input type="button" id="btn-add-text" value="텍스트추가" />
+                <input type="button" id="btn-add-img" value="이미지추가" />
+                <input type="button" id="btn-del-child" value="이미지삭제" />
+                <input type="button" id="btn-clone-child" value="첫째아들복사" />
+                <input type="button" id="btn-change-nodes" value="두개의노드교체" />
+            </li>
+
+        </ul>
+
+    </div>
+    <ul id="photos">
+        <li><input type="checkbox" /><img src="images/hu.png" /></li>
+        <li><input type="checkbox" /><img src="images/join.jpg" /></li>
+        <li><input type="checkbox" /><img src="images/profile.png" /></li>
+    </ul>
+    <input type="text" />
+</body>
+</html>

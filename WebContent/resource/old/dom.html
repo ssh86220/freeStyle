@@ -4,25 +4,153 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
 <script type="text/javascript">
-
-	
-	window.addEventListener("load", function(){
-		var photos = document.getElementById("photos");
+	window.addEventListener("load", function() {
+	 	var photos = document.getElementById("photos");
 		var items = photos.getElementsByTagName("img");
+
+		/*for (var i = 0; i < items.length; i++)
+			items[i].src = "images/hu.png"; */
+		var btnImgChange = document.getElementById("btn-img-change");
+
+		btnImgChange.onclick = function(){
+			var txtImage = document.getElementById("txt-image")
+			items[0].src = "images/"+txtImage.value;
+			items[0].style.border = "2px solid pink";
+			items[0].style.border = "2px solid pink";
+			items[0].style.width = "200px";
+		/* 	for (var i = 0; i < items.length; i++)
+				items[i].src = "images/"+txtImage.value; */
+		};
 		
-		for(var i=0; i<items.length; i++)
-			items[i].src = "images/hu.png";
+		var btnImgChange2 = document.getElementById("btn-img-change2");
+
+		btnImgChange2.onclick = function(){
+			var cbImage = document.getElementById("cb-image")
+		 	for (var i = 0; i < items.length; i++)
+				items[i].src = "images/"+cbImage.value;
+		};
+		
+		var btnAddText = document.getElementById("btn-add-text");
+
+		btnAddText.onclick = function(){
+			var photos = document.getElementById("photos");
+			var items = photos.getElementsByTagName("li");
+			var parents = items[0]; 
+			
+				
+			var txt = document.createTextNode("안녕하세요");	
+			parents.appendChild(txt); 
+			
+
+		};
+		
+		var btnAddImg = document.getElementById("btn-add-img");
+
+		btnAddImg.onclick = function(){
+			var photos = document.getElementById("photos");
+			var items = photos.getElementsByTagName("li");
+			var parents = items[0]; 
+
+			
+			var img1 = document.createElement("img");
+			img1.src="images/join.jpg";
+			
+			parents.appendChild(img1);
+			
+		};
+		
+		
+		var btnDelChild = document.getElementById("btn-del-child");
+
+		 btnDelChild .onclick = function(){
+			var photos = document.getElementById("photos");
+			var items = photos.getElementsByTagName("li");
+			var parents = items[0]; 
+
+			
+		/* 	var last = parents.lastChild;
+			parents.removeChild(last);	 */
+			
+			
+			parents.removeChild(parents.lastChild);	
+			
+		};
+		
+		var btnCloneChild = document.getElementById("btn-clone-child");
+		
+		btnCloneChild.onclick = function(){
+			var photos = document.getElementById("photos");
+			var items = photos.getElementsByTagName("li");
+			var target = items[0]; 
+
+			
+			var clone = target.cloneNode(true); //			
+			photos.appendChild(clone);		
+		};
+		
+		var btnChangeNodes = document.getElementById("btn-change-nodes");
+		
+		btnChangeNodes.onclick = function(){
+			var photos = document.getElementById("photos");  //부모얻기
+			var chboxs = photos.getElementsByTagName("input"); //체크박스얻기
+			
+			//선택개수를 알아보는 코드
+			var cntChecked=0;
+			for (var i = 0; i < chboxs.length; i++) //노드 수만큼 반복
+		 		if(chboxs[i].cheked) //체크상태화면
+		 			cntChecked++; //체크수를 증가
+			
+			//선택이 2개가 되지 않은 경우 메세지 출력
+			if(cntChecked != 2)
+				alert("노드선택이 잘못되었습니다.");
+	
+			var lis = [];
+			
+			for(var i=0, j=0; i<chboxs.length;i++)
+				if(chboxs[i].checked)
+					lis[j++]=chboxs[i].parentNode;
+			
+			/* alert(lis[0].nodeName); */
+			var node = photos.removeChild(lis[0]);
+			//photo 마지막에 붙여
+		/* 	photos.appendChild(node);	 */
+			
+			photos.insertBefore(node,lis[1]); 	
+		};
+			
 	});
-
-
 </script>
 
 <body>
+	<div>
+		<ul>
+			<li>images<input id="txt-image" type="text" /> <input id="btn-img-change"
+				type="button" value="변경" />
+			</li>
+			<li><select id="cb-image">
+					<option value="hu.png">첫번째이미지</option>
+					<option value="join.jpg">두번째이미지</option>
+					<option value="profile.png">세번째이미지</option>
+			</select>
+			images<input id="btn-img-change2" type="button" value="변경" /></li>
+		
+		<li>
+		<input type="button" id="btn-add-text" value="텍스트추가" />
+		<input type="button" id="btn-add-img" value="이미지추가" />
+		<input type="button" id="btn-del-child" value="이미지삭제" />
+		<input type="button" id="btn-clone-child" value="첫째아들복사" />
+		<input type="button" id="btn-change-nodes" value="두개의노드교체" />
+		</li>
+ 		
+		</ul>
+
+	</div>
 	<ul id="photos">
-		<li><img src="images/hu.png" /></li>
-		<li><img src="images/join.jpg" /></li>
-		<li><img src="images/profile.png" /></li>
+		<li><input type="checkbox" /><img src="images/hu.png" /></li>
+		<li><input type="checkbox" /><img src="images/join.jpg" /></li>
+		<li><input type="checkbox" /><img src="images/profile.png" /></li>
 	</ul>
 	<input type="text" />
 </body>

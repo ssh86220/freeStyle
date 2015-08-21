@@ -96,7 +96,7 @@ window.addEventListener("load", init);*/
 
 
 
-	function f1() {
+/*	function f1() {
 		 a = 1;
 		f2();
 
@@ -116,6 +116,8 @@ window.addEventListener("load", init);*/
 	alert(a);
 	alert(g);
 	alert(d);
-	alert(b);
+	alert(b);*/
+
+
 	
 	
