@@ -14,6 +14,10 @@ public class HomeController {
 		return "home.index";
 	}
 	
-	
+	@RequestMapping("save")
+	public void saveCodi()
+	{
+		
+	}
 	
 }
